@@ -30,5 +30,10 @@ export default defineNuxtConfig({
     elementPlus: {
         importStyle: 'css',
         themes: ['dark']
+    },
+
+    nitro: {
+        preset: 'node-server',
+        serveStatic: true
     }
 })
