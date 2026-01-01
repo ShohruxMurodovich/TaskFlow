@@ -4,7 +4,9 @@
       <!-- Left Side - Branding -->
       <div class="auth-branding">
         <div class="brand-logo">
-
+          <el-icon :size="48" color="#6366F1">
+            <Management />
+          </el-icon>
           <h1>TaskFlow</h1>
         </div>
         <h2>Welcome Back</h2>
