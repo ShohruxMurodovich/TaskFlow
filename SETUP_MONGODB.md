@@ -48,7 +48,7 @@
    - Replace `<password>` with your actual password
    - Example:
    ```
-   MONGODB_URI=mongodb+srv://taskuser:MyPass123@cluster0.abcd.mongodb.net/taskmanager?retryWrites=true&w=majority
+   MONGODB_URI=mongodb+srv://<YOUR_USERNAME>:<YOUR_PASSWORD>@<YOUR_CLUSTER>.mongodb.net/taskmanager?retryWrites=true&w=majority
    ```
 
 ### Option 2: Local MongoDB (If already installed)
@@ -84,8 +84,8 @@ If you have MongoDB installed locally:
 
 ✅ **backend/.env** - Created (needs MongoDB URI update)
 ```env
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/taskmanager?retryWrites=true&w=majority
-JWT_SECRET=my-super-secret-jwt-key-for-development-only-change-in-production
+MONGODB_URI=mongodb+srv://<YOUR_USERNAME>:<YOUR_PASSWORD>@<YOUR_CLUSTER>.mongodb.net/taskmanager?retryWrites=true&w=majority
+JWT_SECRET=your-super-secret-jwt-key
 JWT_EXPIRE=7d
 PORT=5000
 NODE_ENV=development

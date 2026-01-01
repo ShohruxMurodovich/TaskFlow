@@ -9,7 +9,7 @@
 2. Create a free account
 3. Create a free cluster (M0)
 4. Click "Connect" → "Connect your application"
-5. Copy the connection string (looks like: `mongodb+srv://username:password@cluster.mongodb.net/...`)
+5. Copy the connection string (looks like: `mongodb+srv://<YOUR_USERNAME>:<YOUR_PASSWORD>@<YOUR_CLUSTER>.mongodb.net/...`)
 
 **Option B: Local MongoDB**
 1. Install MongoDB locally
@@ -26,8 +26,8 @@ cd backend
 2. Create `.env` file with your MongoDB connection:
 ```bash
 # Copy and paste this into backend/.env
-MONGODB_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@YOUR_CLUSTER.mongodb.net/taskmanager?retryWrites=true&w=majority
-JWT_SECRET=your-super-secret-jwt-key-change-this-12345
+MONGODB_URI=mongodb+srv://<YOUR_USERNAME>:<YOUR_PASSWORD>@<YOUR_CLUSTER>.mongodb.net/taskmanager?retryWrites=true&w=majority
+JWT_SECRET=your-super-secret-jwt-key
 JWT_EXPIRE=7d
 PORT=5000
 NODE_ENV=development
@@ -117,8 +117,8 @@ Local: http://localhost:3000
 
 **backend/.env**
 ```env
-MONGODB_URI=mongodb+srv://myuser:mypass123@cluster0.xxxxx.mongodb.net/taskmanager?retryWrites=true&w=majority
-JWT_SECRET=my-super-secret-key-987654321
+MONGODB_URI=mongodb+srv://<YOUR_USERNAME>:<YOUR_PASSWORD>@<YOUR_CLUSTER>.mongodb.net/taskmanager?retryWrites=true&w=majority
+JWT_SECRET=your-super-secret-jwt-key
 JWT_EXPIRE=7d
 PORT=5000
 NODE_ENV=development
