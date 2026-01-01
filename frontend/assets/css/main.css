@@ -1,0 +1,453 @@
+/* Import variables */
+@import './variables.css';
+
+/* ========================================
+   Global Styles
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background: var(--bg-app);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========================================
+   Element Plus Overrides
+   ======================================== */
+
+/* Force Primary Colors */
+:root {
+  --el-color-primary: #4F46E5 !important;
+  --el-color-primary-light-3: #6366F1 !important;
+  --el-color-primary-light-5: #818CF8 !important;
+  --el-color-primary-light-7: #A5B4FC !important;
+  --el-color-primary-light-8: #C7D2FE !important;
+  --el-color-primary-light-9: #E0E7FF !important;
+  --el-color-primary-dark-2: #4338CA !important;
+
+  --el-border-radius-base: 8px !important;
+  --el-font-family: 'Inter', sans-serif !important;
+  --el-font-size-base: 14px !important;
+}
+
+/* Button Overrides */
+.el-button {
+  font-weight: 500 !important;
+  border-radius: var(--radius-md) !important;
+  height: 40px !important;
+  /* Taller buttons */
+  padding: 0 20px !important;
+}
+
+.el-button--primary {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.el-button--large {
+  height: 48px !important;
+  font-size: 16px !important;
+}
+
+/* Card Overrides */
+.el-card {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border-color) !important;
+  background-color: var(--bg-card) !important;
+  overflow: visible !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.el-card__body {
+  padding: 24px !important;
+  /* More breathing room */
+}
+
+/* Table Overrides */
+.el-table {
+  --el-table-header-bg-color: transparent !important;
+  --el-table-row-hover-bg-color: var(--bg-hover) !important;
+  --el-table-text-color: var(--text-primary) !important;
+  --el-table-header-text-color: var(--text-secondary) !important;
+  background-color: transparent !important;
+  font-size: 14px !important;
+  /* Larger text */
+}
+
+.el-table th.el-table__cell {
+  background-color: transparent !important;
+  font-weight: 600 !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 16px 0 !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease !important;
+  /* More vertical padding */
+}
+
+.el-table td.el-table__cell {
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 20px 0 !important;
+  color: var(--text-primary) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease !important;
+  /* Taller rows ~60px */
+}
+
+.el-table .cell {
+  line-height: 1.5 !important;
+  padding: 0 16px !important;
+}
+
+/* Input Overrides */
+.el-input__wrapper {
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 0 0 1px var(--border-color) inset !important;
+  height: 42px !important;
+  padding: 0 16px !important;
+  background-color: var(--bg-card) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease !important;
+  /* Taller inputs */
+}
+
+.el-input__inner {
+  color: var(--text-primary) !important;
+}
+
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
+  /* Soft glow ring */
+  border-color: var(--primary) !important;
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+/* Premium Card */
+.premium-card.el-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: var(--shadow-md) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.premium-card.el-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--border-hover) !important;
+}
+
+/* Layout Utils */
+/* Layout Utils */
+.page-container {
+  padding: 32px 40px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  /* Align bottom to match text baseline roughly */
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-color);
+  /* Subtle divider */
+}
+
+.page-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  transition: color 0.3s ease;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* Force 4 columns for dashboard */
+  gap: 24px;
+  margin-bottom: 48px;
+  /* More space before Recent Tasks */
+}
+
+/* Badges - Global */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-todo {
+  background: var(--status-todo-bg);
+  color: var(--status-todo);
+}
+
+.status-todo .status-dot {
+  background: currentColor;
+}
+
+.status-progress {
+  background: var(--status-progress-bg);
+  color: var(--status-progress);
+}
+
+.status-progress .status-dot {
+  background: currentColor;
+}
+
+.status-done {
+  background: var(--status-done-bg);
+  color: var(--status-done);
+}
+
+.status-done .status-dot {
+  background: currentColor;
+}
+
+.priority-badge {
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.priority-low {
+  color: var(--priority-low);
+}
+
+.priority-medium {
+  color: var(--priority-medium);
+}
+
+.priority-high {
+  color: var(--priority-high);
+}
+
+/* Dates - Global */
+.due-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.due-date.is-overdue {
+  color: var(--priority-high);
+  font-weight: 500;
+}
+
+/* Actions - Global */
+.action-btn {
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background: var(--bg-hover);
+  color: var(--primary);
+}
+
+.text-danger {
+  color: var(--priority-high);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* Stat Card - Premium Redesign */
+.stat-card.el-card {
+  border: none !important;
+  overflow: visible !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.stat-card.el-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.12) !important;
+}
+
+.stat-card .el-card__body {
+  padding: 24px !important;
+  position: relative;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.stat-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+  font-size: 24px;
+}
+
+/* Specific Stat Styles */
+.stat-todo .stat-icon {
+  background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+  color: var(--status-todo);
+}
+
+.stat-progress .stat-icon {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  color: var(--status-progress);
+}
+
+.stat-done .stat-icon {
+  background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+  color: var(--status-done);
+}
+
+.stat-total .stat-icon {
+  background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%);
+  color: var(--primary);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.stat-value {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  transition: color 0.3s ease;
+}
+
+/* Table Card */
+.table-card.el-card {
+  border-radius: 0 !important;
+}
+
+.table-card.el-card .el-card__body {
+  padding: 0 !important;
+}
+
+/* Table Overrides Refined */
+.el-table .el-table__row:hover>td.el-table__cell {
+  background-color: rgba(99, 102, 241, 0.08) !important;
+  border-bottom-color: transparent !important;
+}
+
+.el-table .el-table__row:hover>td.el-table__cell:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.el-table .el-table__row:hover>td.el-table__cell:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.el-table th.el-table__cell {
+  background-color: var(--bg-hover) !important;
+  color: var(--text-secondary) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px !important;
+  padding: 12px 24px !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  height: 48px !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.el-table td.el-table__cell {
+  padding: 16px 24px !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  transition: border-color 0.3s ease !important;
+}
+
+.el-table .cell {
+  padding: 0 !important;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 40px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+/* Sidebar Active State */
+.nav-item.is-active {
+  background: rgba(79, 70, 229, 0.08) !important;
+  color: #4F46E5 !important;
+  border-left: 3px solid #4F46E5 !important;
+  font-weight: 600;
+}
+
+/* Global Tags Reset */
+.el-tag {
+  border-radius: 6px !important;
+  padding: 0 10px !important;
+  height: 24px !important;
+  line-height: 22px !important;
+  font-weight: 600;
+  font-size: 12px !important;
+  border: 1px solid transparent !important;
+}
+
+/* Focus clean up */
+*:focus {
+  outline: none !important;
+}

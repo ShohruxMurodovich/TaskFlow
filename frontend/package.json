@@ -1,0 +1,27 @@
+{
+    "name": "task-management-frontend",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "dependencies": {
+        "@element-plus/nuxt": "^1.0.6",
+        "@pinia/nuxt": "^0.5.1",
+        "axios": "^1.6.0",
+        "element-plus": "^2.4.4",
+        "nuxt": "^3.13.0",
+        "pinia": "^2.1.7",
+        "socket.io-client": "^4.8.3",
+        "vue": "^3.4.0"
+    },
+    "devDependencies": {
+        "@nuxt/icon": "^1.0.0",
+        "@types/node": "^25.0.3"
+    }
+}
