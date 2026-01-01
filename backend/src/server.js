@@ -54,10 +54,6 @@ app.use((req, res) => {
 // Connect to database and start server
 const startServer = async () => {
     try {
-        console.log('Checking environment variables...');
-        console.log('MONGODB_URI exists?', !!process.env.MONGODB_URI);
-        console.log('PORT defined?', process.env.PORT);
-
         await connectDB();
         console.log('MongoDB Connected Successfully');
 
