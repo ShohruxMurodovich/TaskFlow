@@ -5,13 +5,15 @@ let socket = null;
 export const useSocket = () => {
     if (!socket) {
         const config = useRuntimeConfig();
-        const apiUrl = config.public.apiUrl || 'http://localhost:5001';
+        // Remove /api from the end of apiBase to get the root URL for socket.io
+        const socketUrl = config.public.apiBase.replace('/api', '');
 
-        socket = io(apiUrl, {
+        socket = io(socketUrl, {
             autoConnect: true,
             reconnection: true,
             reconnectionDelay: 1000,
-            reconnectionAttempts: 5
+            reconnectionAttempts: 5,
+            transports: ['websocket', 'polling'] // Force websocket first
         });
 
         socket.on('connect', () => {
