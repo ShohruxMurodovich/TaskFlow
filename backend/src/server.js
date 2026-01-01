@@ -8,9 +8,43 @@ const authRoutes = require('./routes/auth.routes');
 const projectRoutes = require('./routes/project.routes');
 const taskRoutes = require('./routes/task.routes');
 const dashboardRoutes = require('./routes/dashboard.routes');
-const commentRoutes = require('./routes/comments.js'); // Use .js extension as created
+const commentRoutes = require('./routes/comments.js');
 
 const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api', commentRoutes);
+
+// Health check
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', message: 'Server is running' });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({
+        success: false,
+        message: err.message || 'Internal server error'
+    });
+});
+
+// 404 handler
+app.use((req, res) => {
+    res.status(404).json({
+        success: false,
+        message: 'Route not found'
+    });
+});
 
 // Connect to database and start server
 const startServer = async () => {
@@ -21,6 +55,8 @@ const startServer = async () => {
 
         await connectDB();
         console.log('MongoDB Connected Successfully');
+
+        const PORT = process.env.PORT || 5001;
 
         const server = app.listen(PORT, '0.0.0.0', () => {
             console.log(`Server running on port ${PORT}`);
@@ -51,5 +87,3 @@ const startServer = async () => {
 };
 
 startServer();
-
-
