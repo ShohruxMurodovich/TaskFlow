@@ -24,6 +24,11 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api', commentRoutes);
 
+// Root health check for Railway
+app.get('/', (req, res) => {
+    res.json({ status: 'ok', service: 'Task Management API', version: '1.0.0' });
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Server is running' });
