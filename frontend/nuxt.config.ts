@@ -32,8 +32,13 @@ export default defineNuxtConfig({
         themes: ['dark']
     },
 
+    ssr: false,
+
     nitro: {
-        preset: 'node-server',
-        serveStatic: true
+        preset: 'static',
+        prerender: {
+            crawlLinks: true,
+            routes: ['/']
+        }
     }
 })
