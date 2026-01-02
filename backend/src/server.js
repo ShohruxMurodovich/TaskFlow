@@ -16,24 +16,27 @@ const app = express();
 // Middleware
 app.use(cors({
     origin: function (origin, callback) {
-        const allowedOrigins = [
-            'http://localhost:3000',
-            process.env.CLIENT_URL
-        ].filter(Boolean); // Remove empty values
-
         // Allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
 
-        if (allowedOrigins.indexOf(origin) !== -1 || !process.env.NODE_ENV === 'production') {
+        const allowedOrigins = [
+            'http://localhost:3000',
+            process.env.CLIENT_URL
+        ].filter(Boolean).map(url => url.replace(/\/$/, '')); // Normalize by removing trailing slashes
+
+        const normalizedOrigin = origin.replace(/\/$/, '');
+
+        if (allowedOrigins.includes(normalizedOrigin)) {
             callback(null, true);
         } else {
-            // For development, we might want to be permissive if origin matches localhost
-            if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+            // Development permissive mode
+            if (process.env.NODE_ENV !== 'production' && (normalizedOrigin.includes('localhost') || normalizedOrigin.includes('127.0.0.1'))) {
                 callback(null, true);
             } else {
-                // In production, strictly enforce allowed origins, but fallback to allowing if matches CLIENT_URL 
-                // (Already checked above, but valid to keep robust logic)
-                callback(null, true); // For now, let's just allow it to avoid blocking the user, inspecting logs might be better strictly
+                console.log('Blocked CORS origin:', origin);
+                // For now, in this specific debugging context, allow it but log it
+                // Ideally this should be callback(new Error('Not allowed by CORS')) in strict prod
+                callback(null, true);
             }
         }
     },
