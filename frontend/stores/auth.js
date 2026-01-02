@@ -25,7 +25,7 @@ export const useAuthStore = defineStore('auth', {
                     localStorage.setItem('token', response.token);
                     localStorage.setItem('user', JSON.stringify(response.user));
                     // Set cookie that expires in 7 days
-                    document.cookie = `token=${response.token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`;
+                    document.cookie = `token=${response.token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=None; Secure`;
                 }
 
                 return { success: true };
@@ -54,7 +54,7 @@ export const useAuthStore = defineStore('auth', {
                     localStorage.setItem('token', response.token);
                     localStorage.setItem('user', JSON.stringify(response.user));
                     // Set cookie that expires in 7 days
-                    document.cookie = `token=${response.token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`;
+                    document.cookie = `token=${response.token}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=None; Secure`;
                 }
 
                 return { success: true };

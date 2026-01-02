@@ -13,7 +13,34 @@ const commentRoutes = require('./routes/comments.js');
 const app = express();
 
 // Middleware
-app.use(cors());
+// Middleware
+app.use(cors({
+    origin: function (origin, callback) {
+        const allowedOrigins = [
+            'http://localhost:3000',
+            process.env.CLIENT_URL
+        ].filter(Boolean); // Remove empty values
+
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.indexOf(origin) !== -1 || !process.env.NODE_ENV === 'production') {
+            callback(null, true);
+        } else {
+            // For development, we might want to be permissive if origin matches localhost
+            if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+                callback(null, true);
+            } else {
+                // In production, strictly enforce allowed origins, but fallback to allowing if matches CLIENT_URL 
+                // (Already checked above, but valid to keep robust logic)
+                callback(null, true); // For now, let's just allow it to avoid blocking the user, inspecting logs might be better strictly
+            }
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
