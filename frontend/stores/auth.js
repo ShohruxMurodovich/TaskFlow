@@ -52,6 +52,7 @@ export const useAuthStore = defineStore('auth', {
 
                 // Store token and user in localStorage AND cookie
                 if (process.client) {
+                    console.log('Login success, saving token:', response.token);
                     localStorage.setItem('token', response.token);
                     localStorage.setItem('user', JSON.stringify(response.user));
                     // Set cookie that expires in 7 days
