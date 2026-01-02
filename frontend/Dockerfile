@@ -3,6 +3,10 @@ FROM node:20-alpine as build-stage
 
 WORKDIR /app
 
+# Accept build-time variable from Railway
+ARG NUXT_PUBLIC_API_BASE
+ENV NUXT_PUBLIC_API_BASE=$NUXT_PUBLIC_API_BASE
+
 COPY package*.json ./
 RUN npm install
 
