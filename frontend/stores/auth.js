@@ -42,7 +42,8 @@ export const useAuthStore = defineStore('auth', {
                 const config = useRuntimeConfig();
                 const response = await $fetch(`${config.public.apiBase}/auth/login`, {
                     method: 'POST',
-                    body: credentials
+                    body: credentials,
+                    credentials: 'include' // Required for Safari to accept the response cookie/headers
                 });
 
                 this.user = response.user;
